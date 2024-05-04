@@ -48,11 +48,13 @@ app.post('/webhook', async (req, res) => {
     const senderPsid = webhookEvent.sender.id;
 
     if (webhookEvent.message) {
+      // Your endpoint should return a 200 OK response within 5 or less seconds
+      // https://developers.facebook.com/docs/messenger-platform/webhooks
+      res.status(200).send('EVENT_RECEIVED');
+      // Continue processing the message
       await handleMessage(senderPsid, webhookEvent.message);
     }
   }
-
-  return res.status(200).send('OK');
 });
 
 app.listen(PORT, () => {
