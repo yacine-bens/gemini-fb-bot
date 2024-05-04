@@ -7,6 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import dotenv from 'dotenv';
+dotenv.config();
 const { GEMINI_PRO_TOKEN } = process.env;
 function geminiPro(text) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -30,6 +32,7 @@ function geminiPro(text) {
             body: JSON.stringify(body),
         });
         const json = yield response.json();
+        console.log(JSON.stringify(json, null, 2));
         const textResult = json.candidates[0].content.parts[0].text;
         return textResult;
     });

@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 const { GEMINI_PRO_TOKEN } = process.env;
 
 async function geminiPro(text: string) {

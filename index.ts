@@ -1,6 +1,8 @@
 import express from 'express';
 import { geminiPro } from './geminipro.js';
 import { createClient } from '@deepgram/sdk';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const PORT = process.env.PORT || 10000;
 const { VERIFICATION_TOKEN, PAGE_ACCESS_TOKEN, DEEPGRAM_API_KEY } = process.env;
@@ -9,14 +11,23 @@ const app = express();
 app.use(express.json());
 
 app.get('/', (req, res) => {
+  console.log('GET /');
+  
   res.send('Hello World');
 });
 
 app.get('/webhook', async (req, res) => {
+  console.log('GET /webhook');
+  
   const mode = req.query['hub.mode'];
   const token = req.query['hub.verify_token'];
   const challenge = req.query['hub.challenge'];
-  
+
+  console.log('mode:', mode);
+  console.log('token:', token);
+  console.log('challenge:', challenge);
+  console.log('VERIFICATION_TOKEN:', VERIFICATION_TOKEN);
+
   if (mode && token && mode === 'subscribe' && token === VERIFICATION_TOKEN) {
     console.log('Webhook verified');
     return res.send(challenge);
@@ -49,7 +60,6 @@ app.listen(PORT, () => {
 });
 
 const handleMessage = async (sender_psid: string, received_message: any) => {
-  console.log(JSON.stringify(received_message), null, 2);
   const { text, attachments } = received_message;
 
   if (attachments && attachments[0] && attachments[0].type === 'audio') {
