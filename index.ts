@@ -13,9 +13,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/webhook', async (req, res) => {
-  const mode = req['hub.mode' as keyof typeof req];
-  const token = req['hub.verify_token' as keyof typeof req];
-  const challenge = req['hub.challenge' as keyof typeof req];
+  const mode = req.query['hub.mode'];
+  const token = req.query['hub.verify_token'];
+  const challenge = req.query['hub.challenge'];
+  
   if (mode && token && mode === 'subscribe' && token === VERIFICATION_TOKEN) {
     console.log('Webhook verified');
     return res.send(challenge);
