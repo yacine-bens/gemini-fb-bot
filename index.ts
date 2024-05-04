@@ -1,5 +1,5 @@
 import express from 'express';
-import { geminiPro } from './geminipro';
+import { geminiPro } from './geminipro.js';
 const PORT = process.env.PORT || 10000;
 
 const app = express();
