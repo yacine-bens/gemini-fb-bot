@@ -22,7 +22,7 @@ const transcribeUrl = async (url: string) => {
         console.error(error);
     }
     else {
-        console.log(JSON.stringify(result, null, 2));
+        // console.log(JSON.stringify(result, null, 2));
     }
 
     return result;
