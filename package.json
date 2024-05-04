@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@deepgram/sdk": "^3.3.1",
     "express": "^4.19.2"
   },
   "type": "module",
