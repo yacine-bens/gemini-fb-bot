@@ -12,7 +12,7 @@ const handleMessage = async (sender_psid: string, received_message: any) => {
         await callSendAPI(sender_psid, 'Please wait...');
         
         const { payload } = attachments[0];
-        if (!payload || payload.url) return;
+        if (!payload || !payload.url) return;
 
         switch (attachments[0].type) {
             case 'audio':
