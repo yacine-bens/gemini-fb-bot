@@ -38,7 +38,7 @@ app.get('/webhook', async (req, res) => {
 
 app.post('/webhook', async (req, res) => {
   const { body } = req;
-  console.log(JSON.stringify(body, null, 2));
+  // console.log(JSON.stringify(body, null, 2));
 
   if (body.object !== 'page') return res.status(400).send('Bad Request');
 
